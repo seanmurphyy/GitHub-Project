@@ -1,0 +1,53 @@
+---
+title: "My First Document"
+author: "Sean Murphy"
+date: "9/7/2017"
+output:
+  pdf_document: default
+  html_document: default
+abstract: This is the abstract of my document. It contains the secret code for writing.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Only one hashtag here
+## Two in here
+### Three in here
+
+* Point 1 made
+* Point 2 made
+* Point 3 made
+
+Sorry, those were not numbered. Let's number them.
+
+1) First point
+2) Second point
+3) Third point
+
+Now that i know my basics. Let me program.
+
+### Iris dataset
+
+Let us look at the names of the variables in the dataset.
+
+```{r}
+df=data.frame(mtcars)
+
+names(df)
+```
+
+This line is going to tell me the summary of those variable.
+
+```{r}
+summary(df)
+```
+
+Finally, a plot.
+
+```{r}
+plot(df,1)
+```
+
+was that awesome or what?

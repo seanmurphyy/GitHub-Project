@@ -1,0 +1,50 @@
+---
+title: "GitHubFile"
+author: "Sean Murphy"
+date: "9/14/2017"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Some commands to use to get a high level picture of the data include the following.
+* dim (dimensions of the data set)
+* nrow () (number of rows)
+* ncol () (number of columns)
+* str() (information about the variable types)
+
+# Executing the dim command
+
+```{r}
+dim(mtcars)
+```
+
+# ncol
+
+```{r}
+ncol(mtcars)
+```
+
+# nrow
+
+```{r}
+nrow(mtcars)
+```
+
+# str
+
+```{r}
+str(mtcars)
+```
+
+# names of variables
+
+```{r}
+names(mtcars)
+
+```
+
