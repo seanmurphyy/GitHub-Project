@@ -1,0 +1,68 @@
+---
+title: "Exploring Diamonds"
+author: "Sean Murphy"
+date: "9/21/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading my diamonds dataset
+
+```{r}
+library(readxl)
+diamond=read_excel("diamonds.xlsx")
+```
+
+My answer to the question
+
+```{r}
+diamond[50000,3]
+```
+
+Now I am going to say the first 6 rows using the head command
+
+```{r}
+head(diamond)
+```
+
+Now I am going to say the last 6 rows using the tail command
+
+```{r}
+tail(diamond)
+```
+
+Now I am going to say the number of columns
+
+```{r}
+ncol(diamond)
+```
+
+Now here is a summary of the dataset
+
+```{r}
+summary(diamond)
+```
+
+## Making the cut variable a factor variable 
+
+```{r}
+diamond$cut=as.factor(diamond$cut)
+summary(diamond$cut)
+```
+
+## Making the color variable a factor variable
+
+```{r}
+diamond$color=as.factor(diamond$color)
+summary(diamond$color)
+```
+
+Now here is a table of cut and color
+
+```{r}
+table(diamond$cut,diamond$color)
+```
+
