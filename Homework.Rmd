@@ -1,0 +1,191 @@
+---
+title: "Homework"
+author: "Sean Murphy and Sam Johnson" 
+date: "9/27/2017"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+
+---
+title: "Homework"
+author: "Sean Murphy" "Sam Johnson"
+date: "9/27/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Data Tidying
+
+Data will be easy to work with in R Studio if it follows 3 rules.
+1. Each variable in the data set is set to its own column.
+2. Each observation is placed in its own row.
+3. Each value is placed in its own cell.
+
+Once data is "tidy" then from the data set multiple variables can be searched in order to calculate new data such as rate, through 4 operations.
+For example TB Cases
+1. Extract the number of TB cases per year.
+2. Extract the population per country per year.
+3. Divide cases by population.
+4. Times by 10,000.
+
+# Tidyr
+(Tidyr) function holds 4 functions that alter the layout of the data set. The 2 main functions in Tidyr are gather() and spread() which both rely on a single idea of a key value pair.
+
+A key value pair is a simple way to record information. A pair contains two parts: a key that explains what the information describes, and a value that contains the actual information.
+
+# Spread
+Spread() turns a pair of key value columns into more "tidy" columns. To use Spread(), pass it the name of a data frame, then the name of the key column in the data frame, and then the name of the value column. Do not use quotes.
+Spread() takes 3 other optional arguments other than data, key and value:
+1. Fill - this will fill in any missing variables that are linked in one data set and not in others.
+2. Convert - if the data set has multiple types of data, the data can be saved in a single type through a data string.
+3. Drop - the drop factor will control whether data will be dropped and replaced with the fill function.
+
+# Gather
+Gather() does the reverse of spread(). gather() collects a set of column names and places them into a single “key” column. It also collects the cells of those columns and places them into a single value column.
+To use gather(), pass it the name of a data frame to reshape. Then pass gather() a character string to use for the name of the “key” column that it will make, as well as a character string to use as the name of the value column that it will make. Finally, specify which columns gather() should collapse into the key value pair.
+
+# Separate
+Separate() turns a single character column into multiple columns by splitting the values of the column wherever a separator character appears.
+To use separate() pass separate the name of a data frame to reshape and the name of a column to separate. Also give separate() an into argument, which should be a vector of character strings to use as new column names. separate() will return a copy of the data frame with the column removed. The previous values of the column will be split across several columns, one for each name.
+
+You can further customize separate() with the remove, convert, and extra arguments:
+
+1. Remove - Set remove = FALSE to retain the column of values that were separated in the final data frame.
+2. Convert - Set convert = TRUE to convert new columns to double (numeric), integer, logical, complex, and factor columns with type.convert().
+3. Extra - extra controls what happens when the number of new values in a cell does not match the number of new columns in into. 
+
+# Unite
+Unite() does the opposite of separate(): it combines multiple columns into a single column.
+Give unite() the name of the data frame to reshape, the name of the new column to create (as a character string), and the names of the columns to unite. unite() will place an underscore (_) between values from separate columns. If you would like to use a different separator, or no separator at all, pass the separator as a character string to separate.
+
+
+### Tidy Data
+
+There are three interrelated rules which make a data set tidy:
+1. Each variable must have its own column.
+2. Each observation must have its own row.
+3. Each value must have its own cell.
+
+The 3 rules are interrelated
+1. Put each data set in a tibble
+2. Put each variable in a column
+
+
+### Data Transformation
+
+A lot of data transformation uses abbreviations for variables such as:
+
+1. int stands for integers.
+
+2. dbl stands for doubles, or real numbers.
+
+3. chr stands for character vectors, or strings.
+
+4. dttm stands for date-times (a date + a time).
+
+Five key dplyr functions that allow you to solve the vast majority of your data manipulation challenges:
+1. Pick observations by their values (filter()).
+2. Reorder the rows (arrange()).
+3. Pick variables by their names (select()).
+4. Create new variables with functions of existing variables (mutate()).
+5. Collapse many values down to a single summary (summarize()).
+
+# Filter
+
+Filter() allows you to subset observations based on their values. The first argument is the name of the data frame. The second and subsequent arguments are the expressions that filter the data frame. 
+
+Example: filter(flights, month == 1, day == 1)
+
+To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. Provide the standard suite: >, >=, <, <=, != (not equal), and == (equal).
+
+Multiple arguments to filter() are combined with “and”: every expression must be true in order for a row to be included in the output. For other types of combinations, you’ll need to use Boolean operators yourself: & is “and”, | is “or”, and ! is “not”.
+
+Whenever you start using complicated, multipart expressions in filter(), consider making them explicit variables instead.
+
+One important feature of R that can make comparison tricky are missing values, or NAs (“not availables”). NA represents an unknown value so missing values are “contagious”: almost any operation involving an unknown value will also be unknown.
+
+# Arrange
+
+Arrange() works similarly to filter() except that instead of selecting rows, it changes their order. It takes a data frame and a set of column names to order by. 
+
+Use desc() to re-order by a column in descending order:
+
+# Select
+
+Select() allows you to rapidly zoom in on a useful subset using operations based on the names of the variables.
+
+There are a number of helper functions you can use within select():
+1. starts_with: matches names that begin with “abc”.
+2. ends_with: matches names that end with “xyz”.
+3. contains: matches names that contain “ijk”.
+4. matches: selects variables that match a regular expression. This one matches any variables that contain repeated characters. You’ll learn more about regular expressions in strings.
+5. rename(), which is a variant of select() that keeps all the variables that aren’t explicitly mentioned:
+
+# Mutate
+
+Mutate() always adds new columns at the end of your data set so we’ll start by creating a narrower data set so we can see the new variables.
+
+# Summarize
+
+Summarize() is usually paired with group_by() this changes the unit of analysis from the complete data set to individual groups.
+
+
+### Going deeper with dplyr: New features in 0.3 and 0.4 
+
+# Loading dplyr and the nycflights13 dataset
+
+# Why use dplyr?
+
+Five important verbs that pertain to functionality are filter, select, arrange, mutate, and summarize.
+Dplyr masks some base functions 
+
+# Local Data Frame
+
+Created by ‘tbl_df’ 
+Simply a wrapper for a data frame that prints nicely 
+Prints like a data frame even though its base level commands
+
+# Filter: Keep rows matching criteria 
+
+dplyr approach is similar to write and read 
+
+# “Chaining” or “pipelining” 
+
+Performs multiple operations in one line 
+Through a process called nesting
+Writes commands in a natural order through %>% 
+This leads to chaining 
+Chaining increases readability significantly 
+
+#mutate: Add new variables
+
+Create new variables that are functions of existing variables 
+Easy shortcut that allows for faster results on specific variables
+
+# Summarize: Reduce variables to values 
+
+useful when grouping one or more variables 
+group_by – creates the groups that will be operated on 
+summarise – uses the provided aggregation function to summarize each group 
+must aggregate with some function 
+summarize each – allows you to apply the same summary function to multiple columns at once 
+Allows for grouping to be useful even without summarizing 
+
+# Window Functions
+
+Aggregation functions take n inputs and returns 1 value 
+
+# Other useful convenience functions 
+
+These functions allow for more random statistics if you are looking for a unbias way of grabbing data 
+
+# Connecting to databases 
+
+dplyr can connect to a database as if the data was loaded into a data frame
+Use the same syntax for local data frames
